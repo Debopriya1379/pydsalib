@@ -6,7 +6,7 @@ class PythonLinearQueue:
         self.size=s
     def enqueue(self,item):
         if self.rear==self.size-1 :
-            print('Queue is full')
+            print('Cannot insert, Queue is full')
             return
         self.rear+=1
         self.qu[self.rear]=item
@@ -14,7 +14,7 @@ class PythonLinearQueue:
             self.front=0
     def dequeue(self):
         if self.front==-1 and self.rear==-1:
-            print('Queue is empty')
+            print('Cannot delete, Queue is empty')
             return
         item=self.qu[self.front]
         if self.front==self.rear:
@@ -39,7 +39,7 @@ class PythonCircularQueue:
         self.size=s
     def enqueue(self,item):
         if self.front==(self.rear+1)%self.size:
-            print('Queue is full')
+            print('Cannot insert, Queue is full')
             return
         self.rear+=1
         self.cqu[self.rear]=item
@@ -47,7 +47,7 @@ class PythonCircularQueue:
             self.front=0
     def dequeue(self):
         if self.front==-1 and self.rear==-1:
-            print('Queue is empty')
+            print('Cannot delete, Queue is empty')
             return
         item=self.cqu[self.front]
         if self.front==self.rear:
@@ -57,40 +57,44 @@ class PythonCircularQueue:
             self.front+=1
         return item
     def display(self):
-        if self.front==-1 and self.rear==-1:
-            print('Queue is empty')
-            return
-        for i in range(self.front,self.rear+1):
-            print(self.cqu[i],'<- ',end='')
-        for i in range(self.rear+1,self.size):
-            print(self.cqu[i],'<- ',end='')
+        if(self.front == -1):
+            print ("Queue is Empty")
+        elif (self.rear >= self.front):
+            for i in range(self.front, self.rear + 1):
+                print(self.cqu[i],'<-',end = " ")
+            print ()
+        else:
+            for i in range(self.front, self.size):
+                print(self.cqu[i],'<-',end = " ")
+            for i in range(0, self.rear + 1):
+                print(self.cqu[i],'<-',end = " ")
+            print ()
         print()
         
 # if __name__=='__main__':
-    # Q=PythonLinearQueue(5)
-    # Q.display()
-    # Q.enqueue(1)
-    # Q.enqueue(2)
-    # Q.enqueue(3)
-    # Q.enqueue(4)
-    # Q.enqueue(5)
-    # Q.display()
-    # Q.enqueue(6)
-    # Q.display()
-    # Q.dequeue()
-    # Q.display()
-    # CQ=PythonCircularQueue(6)
-    # CQ.display()
-    # CQ.enqueue(1)
-    # CQ.enqueue(2)
-    # CQ.enqueue(3)
-    # CQ.enqueue(4)
-    # CQ.enqueue(5)
-    # CQ.enqueue(6)
-    # CQ.display()
+#     # Q=PythonLinearQueue(5)
+#     # Q.display()
+#     # Q.enqueue(1)
+#     # Q.enqueue(2)
+#     # Q.enqueue(3)
+#     # Q.enqueue(4)
+#     # Q.enqueue(5)
+#     # Q.display()
+#     # Q.enqueue(6)
+#     # Q.display()
+#     # Q.dequeue()
+#     # Q.display()
+#     CQ=PythonCircularQueue(5)
+#     CQ.display()
+#     # CQ.enqueue(1)
+#     # CQ.enqueue(2)
+#     CQ.enqueue(3)
+#     # CQ.enqueue(4)
+#     # CQ.enqueue(5)
+#     CQ.enqueue(6)
+#     CQ.display()
     # CQ.enqueue(7)
     # CQ.display()
     # CQ.dequeue()
     # CQ.dequeue()
     # CQ.display()
-
