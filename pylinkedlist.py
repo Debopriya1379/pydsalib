@@ -3,6 +3,12 @@ class Node:
         self.info=val
         self.next=None
 
+class DNode:
+    def __init__(self,val):
+        self.info=val
+        self.prev=None
+        self.next=None
+
 class PythonSinglyLinkedList:
     def __init__(self):
         self.start=None
@@ -182,7 +188,7 @@ class PythonCircularLinkedList:
                 temp=temp.next
                 i+=1
             if(temp.next==self.start and i<pos):
-                print("Given position dees not exists")
+                print("Given position does not exists")
                 return
             elif(temp.next==self.start):
                 self.insertAtEnd(val)
@@ -290,23 +296,128 @@ class PythonCircularLinkedList:
         print(temp.info)
         # print()
 
-# if __name__=='__main__':
-#     cl=PythonCircularLinkedList()
-#     cl.display()
-#     cl.insertAtBegining(1)
-#     cl.insertAtBegining(2)
-#     cl.insertAtBegining(3)
-#     cl.insertAtEnd(5)
-#     cl.display()
-#     cl.deleteAfterSpecificValue(5)
-#     # cl.insertAfterSpecificValue(7,2)
-#     cl.display()
+class PythonDoublyLinkedList:
+    def __init__(self):
+        self.start=None
+    def insertAtBegining(self,val):
+        new_node=DNode(val)
+        if(self.start==None):
+            self.start=new_node
+        else:
+            temp=self.start
+            new_node.next=temp
+            temp.prev=new_node
+            self.start=new_node
+    def insertAtEnd(self,val):
+        new_node=DNode(val)
+        if(self.start==None):
+            self.insertAtBegining(val)
+        else:
+            temp=self.start
+            while(temp.next!=None):
+                temp=temp.next
+            temp.next=new_node
+            new_node.prev=temp
+    ################################################################
+    def insertAtSpecificPosition(self,val,pos):
+        if(pos==1):
+            self.insertAtBegining(val)
+            return
+        new_node=DNode(val)
+        temp=self.start
+        prev2=self.start
+        i=1
+        while(temp.next!=None and i<pos):
+            prev2=temp
+            temp=temp.next
+            i+=1
+        # if(i<pos and prev2.next==None):
+        #     print("Given position does not exists")
+        #     return
+        if(temp.next==None and i<pos):
+            self.insertAtEnd(val)
+        else:
+            prev2.next=new_node
+            new_node.prev=prev2
+            new_node.next=temp
+            temp.prev=new_node
+    ################################################################
+    def deleteAtBegining(self):
+        if(self.start==None):
+            print("Cannot delete, Linked list is empty")
+        elif(self.start.next==None):
+            temp=self.start
+            item=temp.info
+            self.start=None
+            del temp
+            return item 
+        else:
+            temp=self.start
+            self.start=temp.next
+            self.start.prev=None
+            item=temp.info
+            del temp
+            return item
+    def deleteAtEnd(self):
+        if(self.start==None):
+            print("Cannot delete, Linked list is empty")
+        elif(self.start.next==None):
+            temp=self.start
+            item=temp.info
+            self.start=None
+            del temp
+            return item        
+        else:
+            temp=self.start
+            while(temp.next!=None):
+                prev2=temp
+                temp=temp.next
+            prev2.next=None
+            temp.prev=None
+            item=temp.info
+            del temp
+            return item
+    def display(self):
+        if(self.start==None):
+            print("Linked list is empty")
+            return
+        temp=self.start
+        while(temp!=None):
+            print(temp.info," <- ",end='')
+            temp=temp.next
+        print()
+
+
+if __name__=='__main__':
+    dl=PythonDoublyLinkedList()
+    dl.display()
+    dl.insertAtBegining(1)
+    dl.insertAtBegining(2)
+    dl.insertAtBegining(3)
+    dl.insertAtEnd(7)
+    dl.display()
+    # dl.deleteAtBegining()
+    # dl.deleteAtEnd()
+    dl.insertAtSpecificPosition(9,2)
+    dl.display()
+
+#####################################################    
+    # cl=PythonCircularLinkedList()
+    # cl.display()
+    # cl.insertAtBegining(1)
+    # cl.insertAtBegining(2)
+    # cl.insertAtBegining(3)
+    # cl.insertAtEnd(5)
+    # cl.display()
+    # cl.deleteAfterSpecificValue(5)
+    # # cl.insertAfterSpecificValue(7,2)
+    # cl.display()
     # cl.insertAtSpecificPosition(10,70)
     # cl.deleteAtBegining()
     # print(cl.deleteAtEnd())
     # cl.deleteAtSpecificPosition(5)
     # cl.display()
-    ##########################################
+##########################################################
     # SL=PythonSinglyLinkedList()
     # SL.display()
     # SL.insertAtBegining(3)
