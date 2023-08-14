@@ -40,6 +40,11 @@ class PythonLQueue:
             print(temp.info," <- ",end="")
             temp=temp.next
         print()
+    def isEmpty(self):
+        if(self.front==None and self.rear==None):
+            return True
+        else:
+            return False
     
 # if __name__=="__main__":
 #     lq=PythonLQueue()

@@ -28,8 +28,11 @@ class PythonSinglyLinkedList:
             while(i.next!=None):
                 i=i.next
             i.next=new_node
-    def insertAtSpecificPosition(self,val,pos):    
-        if pos==1:
+    def insertAtSpecificPosition(self,val,pos):   
+        if (pos<=0):
+            print("Error : 0 or negative position is not expected") 
+            return
+        if (pos==1):
             self.insertAtBegining(val)
             return
         new_node=Node(val)
@@ -132,6 +135,22 @@ class PythonSinglyLinkedList:
                     return
                 i=i.next
             print('item not found')
+    def reverse(self):
+        Prev=None
+        Curr=self.start
+        while(Curr!=None):
+            Next=Curr.next
+            Curr.next=Prev
+            Prev=Curr
+            Curr=Next
+        self.start=Prev
+    def displayReverse(self):
+        head=self.start
+        def revDis(temp):
+            if(temp.next!=None):
+                revDis(temp.next)
+            print(temp.info)
+        revDis(head)
     def display(self):
         if(self.start==None):
             print('Linked list is empty')
@@ -320,6 +339,12 @@ class PythonDoublyLinkedList:
             new_node.prev=temp
     ################################################################
     def insertAtSpecificPosition(self,val,pos):
+        if (pos<=0):
+            print('negative index not expected')
+            return
+        if (self.start==None):
+            self.start=DNode(val)
+            return
         if(pos==1):
             self.insertAtBegining(val)
             return
@@ -388,18 +413,22 @@ class PythonDoublyLinkedList:
         print()
 
 
-if __name__=='__main__':
-    dl=PythonDoublyLinkedList()
-    dl.display()
-    dl.insertAtBegining(1)
-    dl.insertAtBegining(2)
-    dl.insertAtBegining(3)
-    dl.insertAtEnd(7)
-    dl.display()
-    # dl.deleteAtBegining()
-    # dl.deleteAtEnd()
-    dl.insertAtSpecificPosition(9,2)
-    dl.display()
+# if __name__=='__main__':
+    # dl=PythonDoublyLinkedList()
+    # dl.insertAtSpecificPosition(999,7)
+    # dl.insertAtSpecificPosition(909,1)
+    # dl.insertAtSpecificPosition(90,2)
+    # dl.insertAtSpecificPosition(999,-5)
+    # dl.display()
+    # dl.insertAtBegining(1)
+    # dl.insertAtBegining(2)
+    # dl.insertAtBegining(3)
+    # dl.insertAtEnd(7)
+    # dl.display()
+    # # dl.deleteAtBegining()
+    # # dl.deleteAtEnd()
+    # dl.insertAtSpecificPosition(9,2)
+    # dl.display()s
 
 #####################################################    
     # cl=PythonCircularLinkedList()
@@ -418,22 +447,24 @@ if __name__=='__main__':
     # cl.deleteAtSpecificPosition(5)
     # cl.display()
 ##########################################################
-    # SL=PythonSinglyLinkedList()
-    # SL.display()
-    # SL.insertAtBegining(3)
-    # SL.insertAtBegining(4)
-    # SL.insertAtBegining(1)
-    # SL.insertAtEnding(7)
-    # SL.display()
-    # SL.insertAtSpecificPosition(5,10)   
-    # SL.insertAfterSpecificValue(5,70)
-    # SL.display()
-    # SL.insertBeforeSpecificValue(10,1) 
-    # SL.deleteAtBegining()
-    # SL.deleteAtEnding()
-    # SL.deleteAtSpecificPosition(7)  
-    # SL.deleteSpecificValue(11)      
-    # SL.search(4)
-    # SL.search(3)
-    # SL.search(6)
-    # SL.display()
+    # sl=PythonSinglyLinkedList()
+    # sl.insertAtBegining(3)
+    # sl.insertAtBegining(4)
+    # sl.insertAtBegining(1)
+    # sl.insertAtEnding(7)
+    # sl.display()
+    # sl.displayReverse()
+    # sl.reverse()
+    # sl.display()
+    # sl.insertAtSpecificPosition(5,10)   
+    # sl.insertAfterSpecificValue(5,70)
+    # sl.display()
+    # sl.insertBeforeSpecificValue(10,1) 
+    # sl.deleteAtBegining()
+    # sl.deleteAtEnding()
+    # sl.deleteAtSpecificPosition(7)  
+    # sl.deleteSpecificValue(11)      
+    # sl.search(4)
+    # sl.search(3)
+    # sl.search(6)
+    # sl.display()

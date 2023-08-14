@@ -1,9 +1,9 @@
 class PythonLinearQueue:
-    def __init__(self,s):
-        self.qu=[0 for i in range(s)]
+    def __init__(self,size=10):
+        self.qu=[0 for i in range(size)]
         self.front=-1
         self.rear=-1
-        self.size=s
+        self.size=size
     def enqueue(self,item):
         if self.rear==self.size-1 :
             print('Cannot insert, Queue is full')
@@ -30,6 +30,11 @@ class PythonLinearQueue:
         for i in range(self.front,self.rear+1):
             print(self.qu[i],'<- ',end='')
         print()
+    def isEmpty(self):
+        if self.front==-1 and self.rear==-1:
+            return True
+        else:
+            return False
 
 class PythonCircularQueue:
     def __init__(self,s):
@@ -54,7 +59,7 @@ class PythonCircularQueue:
             self.rear=-1
             self.front=-1
         else:
-            self.front+=1
+            self.front=(self.front+1)%self.size
         return item
     def display(self):
         if(self.front == -1):
@@ -70,19 +75,28 @@ class PythonCircularQueue:
                 print(self.cqu[i],'<-',end = " ")
             print ()
         print()
+    def isEmpty(self):
+        if self.front==-1 and self.rear==-1:
+            return True
+        else:
+            return False
         
 # if __name__=='__main__':
-#     # Q=PythonLinearQueue(5)
-#     # Q.display()
-#     # Q.enqueue(1)
-#     # Q.enqueue(2)
-#     # Q.enqueue(3)
+#     Q=PythonLinearQueue(10)
+#     Q.enqueue(4)
+#     Q.enqueue(3)
+#     Q.enqueue(2)
+#     Q.enqueue(1)
+#     Q.display()
+# #     Q.display()
+#     Q.dequeue()
+#     Q.dequeue()
+#     Q.display()
 #     # Q.enqueue(4)
 #     # Q.enqueue(5)
 #     # Q.display()
 #     # Q.enqueue(6)
 #     # Q.display()
-#     # Q.dequeue()
 #     # Q.display()
 #     CQ=PythonCircularQueue(5)
 #     CQ.display()
